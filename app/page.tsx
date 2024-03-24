@@ -99,7 +99,7 @@ export default function Home() {
         </div>
         <div className="receipe_list">
           <h4>Recommended Indian food  for you</h4>
-          <ReceipeSlide recipe={recipe} />
+          <ReceipeSlide recipe={recipe} hideFav={false} />
         </div>
       </div>
     </div>

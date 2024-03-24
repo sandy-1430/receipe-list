@@ -1,8 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
-import Link from "next/link";
 import { useAppContext } from "@/context";
-import { Each } from "@/utils/Each";
 import { useEffect, useState } from "react";
 import { ReceipeSearch } from "@/components/receipeSearch";
 import { ReceipeSlide } from "@/components/receipeSlide";
@@ -18,7 +15,7 @@ export default function Home() {
     let favArr = receipeList.filter((x:any) => favorites.includes(x.recipeId) ? x : '')
     setFavList(favArr)
     setRecipe(favArr)
-  }, [receipeList])
+  }, [favorites, receipeList])
 
   const handleSearch =(value:any) =>{
     setSearch(value)
@@ -36,7 +33,7 @@ export default function Home() {
         </div>
         <ReceipeSearch hideFav={true} search={search} handleSearch={handleSearch} />
         <div className="receipe_list">
-          {recipe && <ReceipeSlide recipe={recipe} />}
+          {recipe && <ReceipeSlide recipe={recipe} hideFav={true} />}
         </div>
       </div>
     </div>

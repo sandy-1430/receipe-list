@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ReceipeCard } from "@/components/receipeCard";
 
-export const ReceipeSlide = ({ recipe }: any) => {
+export const ReceipeSlide = ({ recipe, hideFav }: any) => {
     
     var settings = {
         dots: false,
@@ -45,7 +45,7 @@ export const ReceipeSlide = ({ recipe }: any) => {
             recipe?.length ?
                 <Slider {...settings}>
                     {recipe?.map((item: any, index: number) => (
-                        <ReceipeCard key={item.recipeId} item={item} index={index} />
+                        <ReceipeCard key={item.recipeId} item={item} index={index} hideFav={hideFav} />
                     ))}
                 </Slider>
             : <div className="err_receipe">No Receipes</div>
