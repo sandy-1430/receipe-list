@@ -11,7 +11,10 @@ export default function Home() {
   const {data:{ receipeList } }:any = useAppContext()  
   const [tags, setTags] = useState<any>([])
   const [recipe, setRecipe] = useState<any>([])
-  const [recipeData, setRecipeData] = useState<any>([])
+  const [recipeData, setRecipeData] = useState<any>({
+    searchData: [],
+    filteredData: []
+  })
   const [search, setSearch] = useState<any>("")
 
   useEffect(() => {
@@ -43,11 +46,12 @@ export default function Home() {
       return x;
     })
     setTags(ActiveArr)    
+    let parentArr = recipeData.searchData?.length ? recipeData.searchData : receipeList; 
 
     let checkActive = tags?.filter((x:any) => x.active === true)
     if(checkActive?.length){
       let filterActive:any = [];
-      receipeList.filter((el:any) => {
+      parentArr.filter((el:any) => {
           return !tags.find((element:any) => {
             if(element.active){
               return el.tags.includes(element.tagName) ? filterActive.push(el) : '';
@@ -55,15 +59,26 @@ export default function Home() {
          });
      });     
       setRecipe(filterActive);
+      setRecipeData((prev:any)=>({...prev, filteredData: filterActive}))
       return false;
+    }else{
+      setRecipeData((prev:any)=>({...prev, filteredData: []}))
     }
-    setRecipe(receipeList);
+    setRecipe(parentArr);
   }
 
   const handleSearch =(e:any) =>{
     setSearch(e.target.value)
-    let searchArr = receipeList.filter((x:any) => x.title.toLowerCase().includes(e.target.value.toLowerCase()) ? x : '')
-    setRecipe(searchArr)
+    let parentArr = recipeData.filteredData?.length ? recipeData.filteredData : receipeList; 
+    if(e.target.value){
+      let searchArr = parentArr.filter((x:any) => x.title.toLowerCase().includes(e.target.value.toLowerCase()) ? x : '')
+      setRecipe(searchArr)
+      setRecipeData((prev:any)=>({...prev, searchData: searchArr}))
+      return false;
+    }else{
+      setRecipeData((prev:any)=>({...prev, searchData: []}))
+    }
+    setRecipe(parentArr);
   } 
 
   return (
