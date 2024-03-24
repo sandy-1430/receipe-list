@@ -15,6 +15,7 @@
                 }
                 span{
                     color: $primary;
+                    text-transform: capitalize;
                 }
             }
         }
@@ -116,10 +117,16 @@
 
         .slick-prev{
             left: toRem(-30);
+            @include mobile {
+                left: -20px;
+            }
         }
         
         .slick-next{
             right: toRem(-30);
+            @include mobile {
+                right: -10px;
+            }
         }
 
         .slick-prev::before,

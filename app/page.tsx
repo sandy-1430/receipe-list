@@ -5,14 +5,28 @@ import { Each } from "@/utils/Each";
 import { useEffect, useState } from "react";
 import { ReceipeSearch } from "@/components/receipeSearch";
 import { ReceipeSlide } from "@/components/receipeSlide";
+import { getLSData } from "@/utils/localStorage";
+import { useRouter } from "next/navigation";
 
 
 export default function Home() {
-  const { data: { receipeList } }: any = useAppContext()
-
+  const { data: { userInfo: { username } ,receipeList }, setData }: any = useAppContext()
+  const router = useRouter();
+  
   const [tags, setTags] = useState<any>([])
   const [recipe, setRecipe] = useState<any>([])
   const [search, setSearch] = useState<any>("")
+
+  useEffect(() => {
+    let userInfo = getLSData("userInfo");
+    if (!userInfo) {
+        console.log(userInfo);
+        setData({loggedIn: false})
+        router.push("/login")
+    } else {
+        setData({loggedIn: true, userInfo: userInfo})
+    }
+  }, [router, setData])
 
   useEffect(() => {
     let filteredArr: any = [];
@@ -78,7 +92,7 @@ export default function Home() {
         <div className="d-flex justify-btn flex-wrap home-content">
           <div className="main_content">
             <h2>
-              Welcome back , <span>Nicola Peltz</span>
+              Welcome back , <span>{username}</span>
               <br /> Lets cook something New !
             </h2>
           </div>

@@ -16,16 +16,6 @@ export default function Header() {
     const {data:{ loggedIn}, setData }:any = useAppContext()
 
     useEffect(() => {
-        let userInfo = getLSData("userInfo");
-        if (!userInfo) {
-            setData({loggedIn: false})
-            router.push("/login")
-        } else {
-            setData({loggedIn: true, userInfo: userInfo})
-        }
-    }, [router, setData])
-
-    useEffect(() => {
         const getData = getLSData("data");
         if (!getData) {
             setLSData("data", dataJson?.data)

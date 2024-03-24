@@ -3,13 +3,27 @@ import { useAppContext } from "@/context";
 import { useEffect, useState } from "react";
 import { ReceipeSearch } from "@/components/receipeSearch";
 import { ReceipeSlide } from "@/components/receipeSlide";
+import { getLSData } from "@/utils/localStorage";
+import { useRouter } from "next/navigation";
 
 
 export default function Home() {
-  const {data:{ userInfo: { favorites } ,receipeList } }:any = useAppContext()  
+  const {data:{ userInfo: { favorites } ,receipeList }, setData }:any = useAppContext()  
+  const router = useRouter();
   const [recipe, setRecipe] = useState<any>([])
   const [favList, setFavList] = useState<any>(false)
-  const [search, setSearch] = useState<any>("")
+  const [search, setSearch] = useState<any>("")  
+
+  useEffect(() => {
+    let userInfo = getLSData("userInfo");
+    if (!userInfo) {
+        console.log(userInfo);
+        setData({ loggedIn: false })
+        router.push("/login")
+    } else {
+        setData({ loggedIn: true, userInfo: userInfo })
+    }
+}, [router, setData])
 
   useEffect(() => {
     let favArr = receipeList.filter((x:any) => favorites.includes(x.recipeId) ? x : '')
