@@ -20,9 +20,9 @@ export default function Home() {
     setRecipe(favArr)
   }, [receipeList])
 
-  const handleSearch =(e:any) =>{
-    setSearch(e.target.value)
-    let searchArr = favList.filter((x:any) => x.title.toLowerCase().includes(e.target.value.toLowerCase()) ? x : '')
+  const handleSearch =(value:any) =>{
+    setSearch(value)
+    let searchArr = favList.filter((x:any) => x.title.toLowerCase().includes(value.toLowerCase()) ? x : '')
     setRecipe(searchArr)
   }  
 

@@ -11,13 +11,40 @@
         ],
         "receipeList":[
             {
-                "recipeId": "1111",
-                "title": "Veg Noodles",
-                "ingredients": ["Maggie", "water", "maggie masala", "cheese" , "pizza toppings"],
-                "tags": [],
-                "duration": "30 min",
-                "imageUrl": "https://res.cloudinary.com/dpxwyyqdm/image/upload/f_auto,q_auto/v1/next-upload/gyrx0nm1mkrtqtoboa9n",
-                "userId": "12345"
+                "duration": "10min",
+                "imageUrl": "https://res.cloudinary.com/dpxwyyqdm/image/upload/v1711178751/next-upload/cfjr95ooj65p9s3rjjo0.png",
+                "ingredients": ["chicken", "bread"],
+                "recipeId": "622244ca-bc94-4752-b383-756cf08590cc",
+                "tags": ["Vietnameese"],
+                "title": "Chicken sandwich",
+                "userId":"12345"
+            },
+            {
+                "duration": "20min",
+                "imageUrl": "https://res.cloudinary.com/dpxwyyqdm/image/upload/v1711178751/next-upload/kqs5zgymh8pljallly6z.png",
+                "ingredients": ["milk", "biscuit"],
+                "recipeId": "cb9d8495-f258-4d12-8a5f-319af2ed14f6",
+                "tags": ["Juices"],
+                "title": "Oreo milkshake",
+                "userId":"12345"
+            },
+            {
+                "duration": "10min",
+                "imageUrl": "https://res.cloudinary.com/dpxwyyqdm/image/upload/v1711178751/next-upload/mne3fx9w4eobbvwfuuws.png",
+                "ingredients": ["pasta", "water"],
+                "recipeId": "0b2db328-4091-4660-91a2-11906dcd79da",
+                "tags": ["Snacks"],
+                "title": "Pasta white sauce",
+                "userId":"12345"
+            },
+            {
+                "duration": "30min",
+                "imageUrl": "https://res.cloudinary.com/dpxwyyqdm/image/upload/v1711178752/next-upload/kckdcfciiyau49zc5hdj.png",
+                "ingredients": ["milk", "strawberry"],
+                "recipeId": "cd8fa081-382a-4695-b8a5-c5da37b914ef",
+                "tags": ["Juices"],
+                "title": "Strawberry Shake",
+                "userId":"12345"
             }
         ]
     }

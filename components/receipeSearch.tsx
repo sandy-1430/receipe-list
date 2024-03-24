@@ -8,7 +8,7 @@ export const ReceipeSearch = ({search, handleSearch, hideFav}:any) => {
             type="text" 
             placeholder="Search for recipies ,Cusines and more" 
             value={search}
-            onChange={(e:any)=>handleSearch(e)}
+            onChange={(e:any)=>handleSearch(e.target.value)}
         />
         </div>
         {!hideFav &&

@@ -42,10 +42,12 @@ export const ReceipeSlide = ({ recipe }: any) => {
     };
 
     return (
-        <Slider {...settings}>
-            {recipe?.map((item: any, index: number) => (
-                <ReceipeCard key={item.recipeId} item={item} index={index} />
-            ))}
-        </Slider>
+            recipe?.length ?
+                <Slider {...settings}>
+                    {recipe?.map((item: any, index: number) => (
+                        <ReceipeCard key={item.recipeId} item={item} index={index} />
+                    ))}
+                </Slider>
+            : <div className="err_receipe">No Receipes</div>
     )
 }

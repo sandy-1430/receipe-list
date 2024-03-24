@@ -8,78 +8,69 @@ import { ReceipeSlide } from "@/components/receipeSlide";
 
 
 export default function Home() {
-  const {data:{ receipeList } }:any = useAppContext()  
+  const { data: { receipeList } }: any = useAppContext()
+
   const [tags, setTags] = useState<any>([])
   const [recipe, setRecipe] = useState<any>([])
-  const [recipeData, setRecipeData] = useState<any>({
-    searchData: [],
-    filteredData: []
-  })
   const [search, setSearch] = useState<any>("")
 
   useEffect(() => {
     let filteredArr: any = [];
-    receipeList.filter((x:any) =>{
+    receipeList.filter((x: any) => {
       filteredArr.push(x.tags)
     })
 
-    let uniqueArr = [...new Set(filteredArr.flat())]
+    let uniqueArr = Array.from(new Set(filteredArr.flat()))
+    
 
-    let finalArr:any = []
-    uniqueArr.map((x:any)=>{
-      finalArr.push({active:false, tagName: x})
+    let finalArr: any = []
+    uniqueArr.map((x: any) => {
+      finalArr.push({ active: false, tagName: x })
     })
 
     setTags(finalArr)
 
     setRecipe(receipeList)
-    setRecipeData(receipeList)
-    
-  }, [receipeList])
 
-  const hanldeFilter = (key:number) =>{
-    let ActiveArr = tags?.map((x:any, index:number)=>{
-      if(index === key){
+  }, [receipeList])  
+
+  const hanldeFilter = (key: number) => {
+    let ActiveArr = tags?.map((x: any, index: number) => {
+      if (index === key) {
         x.active = !x.active
       }
-
       return x;
     })
-    setTags(ActiveArr)    
-    let parentArr = recipeData.searchData?.length ? recipeData.searchData : receipeList; 
 
-    let checkActive = tags?.filter((x:any) => x.active === true)
-    if(checkActive?.length){
-      let filterActive:any = [];
-      parentArr.filter((el:any) => {
-          return !tags.find((element:any) => {
-            if(element.active){
-              return el.tags.includes(element.tagName) ? filterActive.push(el) : '';
-            }
-         });
-     });     
-      setRecipe(filterActive);
-      setRecipeData((prev:any)=>({...prev, filteredData: filterActive}))
-      return false;
-    }else{
-      setRecipeData((prev:any)=>({...prev, filteredData: []}))
-    }
-    setRecipe(parentArr);
+    setTags(ActiveArr)
   }
 
-  const handleSearch =(e:any) =>{
-    setSearch(e.target.value)
-    let parentArr = recipeData.filteredData?.length ? recipeData.filteredData : receipeList; 
-    if(e.target.value){
-      let searchArr = parentArr.filter((x:any) => x.title.toLowerCase().includes(e.target.value.toLowerCase()) ? x : '')
-      setRecipe(searchArr)
-      setRecipeData((prev:any)=>({...prev, searchData: searchArr}))
-      return false;
-    }else{
-      setRecipeData((prev:any)=>({...prev, searchData: []}))
-    }
-    setRecipe(parentArr);
-  } 
+  const handleSearch = (value: any) => {
+    setSearch(value)
+  }
+
+  useEffect(() => {
+    let searchArr = receipeList.filter((x: any) => {
+      return x.title.toLowerCase().indexOf(search) !== -1 ? x : ''
+    })
+
+    let checkActive = tags?.filter((x: any) => x.active === true)
+      if (checkActive?.length) {
+        let filterActive: any = [];
+        searchArr.filter((el: any) => {
+          return !tags.find((element: any) => {
+            if (element.active) {
+              return el.tags.includes(element.tagName) ? filterActive.push(el) : '';
+            }
+          });
+        });
+        setRecipe(filterActive);
+      }
+      else{
+        setRecipe(searchArr);
+      }
+
+  }, [tags, search, receipeList])
 
   return (
     <div className="home">
@@ -102,13 +93,13 @@ export default function Home() {
         </div>
         <ReceipeSearch hideFav={false} search={search} handleSearch={handleSearch} />
         <div className="receipe-tags d-flex">
-          <Each of={tags} render={(item:any, index:any)=> 
-            <button type="button" className={item.active ? 'active' : ''} onClick={()=>hanldeFilter(index)}> {item.tagName} </button>} 
+          <Each of={tags} render={(item: any, index: any) =>
+            <button type="button" className={item.active ? 'active' : ''} onClick={() => hanldeFilter(index)}> {item.tagName} </button>}
           />
         </div>
         <div className="receipe_list">
           <h4>Recommended Indian food  for you</h4>
-          {recipe && <ReceipeSlide recipe={recipe} />}
+          <ReceipeSlide recipe={recipe} />
         </div>
       </div>
     </div>
