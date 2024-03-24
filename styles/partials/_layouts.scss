@@ -1,0 +1,136 @@
+.container{
+    max-width: 90%;
+    margin: 0 auto;
+    @include tablet-portrait{
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
+
+.d-flex{
+    display: flex;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.justify-btn{
+    justify-content: space-between;
+}
+
+.input-text{
+    margin: 0 0 toRem(20);
+    input{
+        padding: toRem(16);
+        background: $primary-light;
+        border: toRem(2) solid $primary-light;
+        width: 100%;
+        outline: none;
+        border-radius: toRem(8);
+        font-size: toRem(16);
+        line-height: toRem(24);
+        color: $text;
+        font-weight: 400;
+
+        @include tablet-portrait{
+            padding: 12px;
+            font-size: 14   px;
+        }
+
+        &::placeholder{
+            color: $secondary;                    
+        }
+    }
+}
+
+.btn-primary,
+.btn-outline-secondary,
+.btn-rounded-primary{
+    padding: toRem(16);
+    display: inline-block;
+    width: 100%;
+    border-radius: toRem(8);
+    font-size: toRem(12);
+    font-weight: 600;
+    transition: ease-in-out 0.3s;
+}
+
+.btn-primary{
+    background: $primary;
+    border: toRem(2) solid $primary;
+    color: $white;
+
+    &:hover{
+        color: $primary;
+        background: transparent;
+    }
+}
+
+.btn-outline-secondary{
+    background: transparent;
+    border: toRem(2) solid $secondary;
+    color: $secondary;
+
+    &:hover{
+        color: $white;
+        background: $secondary;
+    }
+
+}
+
+.btn-rounded-primary{
+    background: $primary;
+    border: toRem(2) solid $primary;
+    border-radius: toRem(32);
+    color: $white;
+
+    &:hover{
+        color: $primary;
+        background: transparent;
+    }
+}
+
+.black-btn{
+    background: $text;
+    color: $white;
+    font-size: toRem(12);
+    font-weight: 600;
+    border: toRem(2) solid $text;
+    border-radius: toRem(8);
+    padding: toRem(10) toRem(20);
+    display: flex;
+    align-items: center;
+    gap: toRem(5);
+    transition: ease-in-out 0.3s;
+
+    svg{
+        width: toRem(20);
+        height: toRem(20);
+
+        path{
+            transition: ease-in-out 0.3s;
+        }
+    }
+
+    &:hover{
+        background: $white;
+        color: $text;
+    }
+    &:hover svg path{
+        fill: $black;
+    }
+}
+
+.toasted{
+    width: 100%;
+    white-space: nowrap;
+}

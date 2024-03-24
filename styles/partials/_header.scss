@@ -1,0 +1,101 @@
+header{
+    padding: toRem(20) 0;
+    position: sticky;
+    top: 0;
+    background: $white;
+    z-index: 1;
+    box-shadow: 0 0 2px 2px rgb(233 233 233 / 50%);
+
+    .navMenu{
+        display: none;
+        margin: 0 0 0 auto;
+        transition: all .4s ease-in-out;
+        @include tablet-portrait{
+            display: block;
+        }
+
+        & > span{
+            display: block;
+            width: 28px;
+            height: 2px;
+            border-radius: 9999px;
+            background: $black;
+            transition: all .4s ease-in-out;
+
+            &:not(:last-child){
+                margin: 0 0 7px;
+            }
+        }
+
+        &.active{
+            transition-delay: 0.5s;
+            transform: rotate(45deg);
+
+            & > span:nth-child(2){
+                width: 0;
+            }
+
+            & > span:nth-child(1),
+            & > span:nth-child(3){
+                transition-delay: .4s;
+            }
+
+            & > span:nth-child(1){
+                transform: translateY(9px);
+            }
+
+            & > span:nth-child(3){
+                transform: translateY(-9px) rotate(90deg);
+            }
+
+            & + .nav-list{
+                transform: translateX(0);
+            }
+        }
+    }
+    .logo{        
+        img{
+            width: toRem(98);
+            height: toRem(30);
+        }
+    }
+
+    .nav-list{
+        gap: toRem(40);
+        @include tablet-portrait{
+            flex-direction: column;
+            position: fixed;
+            right: 0;
+            top: 60px;
+            background: #ffff;
+            width: 300px;
+            align-items: center;
+            padding: 20px;
+            height: calc(100% - 60px);
+            transform: translateX(100%);
+            transition: ease-in-out 0.5s;
+        }
+        ul{
+            gap: toRem(30);
+            @include tablet-portrait{
+                flex-direction: column;
+            }
+            li{
+                a{
+                    color: $text;
+                    font-size: toRem(12);
+                    line-height: toRem(18);
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .btn-rounded-primary{
+            width: auto;
+            padding: toRem(10) toRem(32);
+            @include tablet-portrait{
+                width: 100%;
+            }
+        }
+    }
+}

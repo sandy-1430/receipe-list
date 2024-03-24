@@ -1,0 +1,115 @@
+.login{
+    padding: toRem(25) 0;
+    .login_banner,
+    .login_form{
+        flex: 40% 0 0; 
+        @include tablet-landscape {
+            flex: 48% 0 0;
+        }
+        @include tablet-portrait{
+            flex: 100% 0 0;
+        }
+    }
+
+    .login_banner{
+        @include tablet-portrait{
+            display: none;
+        }
+        img{
+            width: toRem(544);
+            height: toRem(417);
+            @include tablet-landscape {
+                height: auto;
+            }
+        }
+    }
+
+    .login-content{
+        padding: toRem(20) 0;
+        text-align: center;
+        h4{
+            color: $text;
+            font-size: toRem(20);
+            margin: 0 0 toRem(10);
+            font-weight: 600;
+        }
+        p{
+            color: $primary;
+            font-size: toRem(14);
+            line-height: toRem(24);
+        }
+    }
+
+    .login_form{
+        padding: toRem(40) toRem(32);
+        border: toRem(2) solid $secondary;
+        border-radius: toRem(8);
+        @include tablet-portrait{
+            padding: 25px 15px;
+        }
+        .form-content{
+            margin: 0 0 toRem(40);
+            text-align: center;
+            h5{
+                color: $text;
+                font-size: toRem(16);
+                font-weight: 600;
+                margin: 0 0 toRem(10);
+            }
+            p{
+                color: $text;
+                font-size: toRem(10);
+                font-weight: 600;
+            }
+        }
+        .input-text{
+            margin: 0 0 toRem(25);
+            input{
+                background: transparent;
+                border-color: $secondary;
+                font-size: toRem(12);
+                font-weight: 600;
+            }
+        }
+
+        .btn-primary{
+            margin: toRem(20) 0 0;
+        }
+
+        .option-text{
+            margin: toRem(40) auto;
+            text-align: center;
+            .option{
+                color: $text;
+                font-size: toRem(12);
+                line-height: toRem(18);
+                font-weight: 600;
+                text-align: center;
+                position: relative;
+                display: inline-block;
+
+                &::after,
+                &::before{
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    transform: translate(0, -50%);
+                    width: toRem(100);
+                    height: toRem(2);
+                    background: linear-gradient(90deg, #CCCCCC 0%, rgba(255, 255, 255, 0) 100.5%);
+                }
+
+                &::before{
+                    left: toRem(30);
+                }
+                
+
+                &::after{
+                    right: toRem(30);
+                    transform: rotateZ(180deg);
+                }
+            }
+        }
+
+    }
+}

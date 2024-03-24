@@ -1,0 +1,177 @@
+.home{
+    padding: toRem(25) 0;
+    .home-content{
+        @include tablet-portrait{
+            gap: 20px;
+        }
+        .main_content{
+            h2{
+                color: $text;
+                font-size: toRem(24);
+                font-weight: 600;
+                line-height: toRem(36);
+                @include tablet-portrait{
+                    font-size: 20px;
+                }
+                span{
+                    color: $primary;
+                }
+            }
+        }
+    }
+
+    .search-receipe{
+        margin: toRem(40) 0 toRem(20);
+        gap: toRem(32);
+        @include tablet-portrait{
+            gap: 10px;
+        }
+
+        .input-text{
+            width: 100%;
+            position: relative;
+            margin: 0;
+            input{
+                padding: toRem(16) toRem(50);
+                @include tablet-portrait{
+                    padding: 12px 40px;
+                }
+            }
+            &::after{
+                content: "";
+                background-image: url("../../assests/search.png");
+                background-repeat: no-repeat;
+                background-size: cover;
+                position: absolute;
+                left: toRem(16);
+                top: 50%;
+                transform: translate(0, -50%);
+                width: toRem(24);
+                height: toRem(24);
+            }
+        }
+
+        .favourites{
+            width: toRem(56);
+            height: toRem(56);
+            padding: toRem(16);
+            background: $primary-light;
+            border: none;
+            outline: none;
+            border-radius: toRem(8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include tablet-portrait{
+                width: 52px;
+                height: 52px;
+            }
+
+            svg{
+                width: toRem(24);
+                height: toRem(24);
+            }
+
+            &.active{
+                background: $primary;
+                svg path{
+                    fill: $white;
+                }
+            }
+        }
+    }
+
+    .receipe-tags{
+        gap: toRem(16);
+        margin: 0 0 toRem(40);
+        @include tablet-portrait{
+            flex-wrap: wrap;
+        }
+        button{
+            color: $primary;
+            font-size: toRem(10);
+            line-height: toRem(15);
+            font-weight: 400;
+            padding: toRem(8) toRem(20);
+            border-radius: toRem(16);
+            border: toRem(1) solid $primary;
+            background: transparent;
+
+            &.active{
+                color: $text2;
+                background: $primary;
+            }
+        }
+    }
+
+    .receipe_list{
+        h4{
+            color: $text;
+            font-size: toRem(16);
+            line-height: toRem(24);
+            font-weight: 600;
+            margin: 0 0 toRem(20);
+        }
+
+        .slick-prev{
+            left: toRem(-30);
+        }
+        
+        .slick-next{
+            right: toRem(-30);
+        }
+
+        .slick-prev::before,
+        .slick-next::before{
+            font-size: toRem(32);
+            color: $primary;
+        }
+
+        .slider{
+            margin: toRem(10);
+            display: block !important;
+            width: auto !important;
+            outline: none;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+            .slider-caption{
+                margin: toRem(10) 0 0;
+                .slider-content{
+                    p{
+                        color: $text;
+                        font-size: toRem(14);
+                        line-height: toRem(21);
+                        font-weight: 600;
+                    }
+                    .duration{
+                        color: $primary;
+                        font-size: toRem(12);
+                        line-height: toRem(18);
+                        font-weight: 500;
+                    }
+                }
+            }
+            button{
+                background: $white;
+                border: toRem(1) solid $primary;
+                border: none;
+                outline: none;
+                padding: 10px;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.active{
+                    background: $primary;
+                    svg path{
+                        fill: $white;
+                    }
+                }
+            }
+        }
+    }
+}

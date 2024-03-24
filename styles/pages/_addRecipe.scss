@@ -1,0 +1,15 @@
+.add-recipe{
+    margin: toRem(20) 0;
+    h2{
+        color: $text;
+        font-size: toRem(24);
+        line-height: toRem(36);
+        font-weight: 600;
+        margin: 0 0 toRem(30);
+    }
+    .btn-primary:disabled{
+        background: $secondary;
+        border-color: $secondary;
+        opacity: 0.5;
+    }
+}
